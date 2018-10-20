@@ -1,8 +1,8 @@
 # javalec
 
-*This is the Spring PJT Board Application*
+#This is the Spring PJT Board Application*
 
-**How to Use**
+##How to Use**
 
-**Dependencies Needed**
+##Dependencies Needed**
 
