@@ -31,7 +31,6 @@ public class BController {
 		this.template = template;
 		Constant.template = this.template;
 	}
-
 	
 	@RequestMapping("/list")
 	public String list(Model model) {

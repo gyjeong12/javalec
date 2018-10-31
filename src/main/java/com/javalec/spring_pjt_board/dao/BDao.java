@@ -91,11 +91,11 @@ public class BDao {
 	public void write(final String bName, final String bTitle, final String bContent) {
 		
 		template.update(new PreparedStatementCreator() {
-			
+	
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				String query = "insert into mvc_board (bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent)"+
-						"values (mvc_board_seq.nextval, ?,?,?,0,mvc_board_seq.currval,0,0)";
+						"values (last_insert_id(), ?,?,?,0,last_insert_id(),0,0)";
 				PreparedStatement pstmt = con.prepareStatement(query);
 				pstmt.setString(1, bName);
 				pstmt.setString(2, bTitle);
@@ -266,7 +266,7 @@ public class BDao {
 	
 	public BDto reply_view(String strID) {
 		
-		String query = "select * from mvc_board where bId = ?";	
+		String query = "select * from mvc_board where bId = "+ strID;	
 		return template.queryForObject(query, new BeanPropertyRowMapper<BDto>(BDto.class));
 		
 //		BDto dto = null;
@@ -318,7 +318,7 @@ public class BDao {
 		
 		replyShape(bGroup, bStep);
 		
-		String query = "insert into mvc_board (bId, bName, bTitle, bContent, bGroup, bStep, bIndent) values (mvc_board_seq.nextval,?,?,?,?,?,?)";
+		String query = "insert into mvc_board (bId, bName, bTitle, bContent, bGroup, bStep, bIndent) values (last_insert_id(),?,?,?,?,?,?)";
 		
 		template.update(query, new PreparedStatementSetter() {
 
@@ -370,7 +370,7 @@ public class BDao {
 	
 	private void replyShape(final String strGroup, final String strStep) {
 		
-		String query = "update mvc_board set bStep=bStep+1 where bGroup=? and bStep> ?";
+		String query = "update mvc_board set bStep=bStep+1 where bGroup=? and bStep > ?";
 		
 		template.update(query, new PreparedStatementSetter() {
 

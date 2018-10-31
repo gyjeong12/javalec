@@ -24,10 +24,10 @@
 	<context:component-scan base-package="com.javlec.spring_pjt_board" />
 	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-     	<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-     	<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-     	<beans:property name="username" value="scott" />
-     	<beans:property name="password" value="tiger" />
+     	<beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+     	<beans:property name="url" value="jdbc:mysql://us-cdbr-iron-east-01.cleardb.net/ad_4f48e70617dbd5a?user=b16251c9ebb3d2\u0026password=3d6098a7" />
+     	<beans:property name="username" value="b16251c9ebb3d2" />
+     	<beans:property name="password" value="3d6098a7" />
 	</beans:bean>
 
 	<beans:bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
